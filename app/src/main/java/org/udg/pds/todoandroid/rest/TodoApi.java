@@ -4,6 +4,7 @@ import org.udg.pds.todoandroid.entity.IdObject;
 import org.udg.pds.todoandroid.entity.Task;
 import org.udg.pds.todoandroid.entity.User;
 import org.udg.pds.todoandroid.entity.UserLogin;
+import org.udg.pds.todoandroid.entity.UserRegister;
 
 import java.util.List;
 
@@ -23,8 +24,14 @@ public interface TodoApi {
     @POST("/users/login")
     Call<User> login(@Body UserLogin login);
 
+    @POST("/users/register")
+    Call<String> register(@Body UserRegister register);
+
     @GET("/users/check")
     Call<String> check();
+
+    @GET("/users/me")
+    Call<User> me();
 
     @POST("/tasks")
     Call<IdObject> addTask(@Body Task task);

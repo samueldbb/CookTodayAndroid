@@ -11,6 +11,7 @@ import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 
+import org.udg.pds.todoandroid.entity.User;
 import org.udg.pds.todoandroid.rest.TodoApi;
 import org.udg.pds.todoandroid.util.Global;
 
@@ -28,6 +29,7 @@ public class TodoApp extends Application {
     public static final DateTimeFormatter AppDateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy - HH:mm:ss z");
 
     TodoApi mTodoService;
+    User user;
 
     @Override
     public void onCreate() {
@@ -62,4 +64,8 @@ public class TodoApp extends Application {
     public TodoApi getAPI() {
         return mTodoService;
     }
+
+    public void setUser(User u){ user = u;}
+    public User getUser(){ return user;}
+
 }

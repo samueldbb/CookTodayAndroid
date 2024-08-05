@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.udg.pds.todoandroid.R;
 import org.udg.pds.todoandroid.TodoApp;
+import org.udg.pds.todoandroid.entity.User;
 import org.udg.pds.todoandroid.rest.TodoApi;
 
 import retrofit2.Call;
@@ -31,14 +32,15 @@ public class SplashScreen extends AppCompatActivity {
 
         TodoApi todoApi = ((TodoApp) this.getApplication()).getAPI();
 
-        Call<String> call = todoApi.check();
-        call.enqueue(new Callback<String>() {
+        Call<User> call = todoApi.me();
+        call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
 
                 if (response.isSuccessful()) {
-                    SplashScreen.this.startActivity(new Intent(SplashScreen.this, NavigationActivity.class));
-                    SplashScreen.this.finish();
+                    ((TodoApp) SplashScreen.this.getApplication()).setUser(response.body());
+                    //SplashScreen.this.startActivity(new Intent(SplashScreen.this, NavigationActivity.class));
+                    //SplashScreen.this.finish();
                 } else {
                     SplashScreen.this.startActivity(new Intent(SplashScreen.this, Login.class));
                     SplashScreen.this.finish();
@@ -46,7 +48,7 @@ public class SplashScreen extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 Toast toast = Toast.makeText(SplashScreen.this, "Error checking login status", Toast.LENGTH_SHORT);
                 toast.show();
             }
