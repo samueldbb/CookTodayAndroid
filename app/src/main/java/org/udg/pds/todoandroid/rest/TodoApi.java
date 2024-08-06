@@ -1,6 +1,7 @@
 package org.udg.pds.todoandroid.rest;
 
 import org.udg.pds.todoandroid.entity.IdObject;
+import org.udg.pds.todoandroid.entity.Recepta;
 import org.udg.pds.todoandroid.entity.Task;
 import org.udg.pds.todoandroid.entity.User;
 import org.udg.pds.todoandroid.entity.UserLogin;
@@ -45,6 +46,9 @@ public interface TodoApi {
     @POST("/images")
     @Multipart
     Call<String> uploadImage(@Part MultipartBody.Part file);
+
+    @POST("/users/me/addRecepta")
+    Call<IdObject> addRecepta(@Body Recepta recepta);
 
 }
 

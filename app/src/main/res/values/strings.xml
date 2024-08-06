@@ -28,8 +28,16 @@
     <string name="title_activity_splash_screen">TODO</string>
     <string name="splash_content">TODO</string>
 
+    <string-array name="categories">
+        <item>Carn</item>
+        <item>Veggie</item>
+        <item>Italia</item>
+        <item>Oriental</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_settings">This are the settings</string>
+
 
 </resources>
