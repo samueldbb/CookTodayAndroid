@@ -7,9 +7,9 @@ import java.util.Collection;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
     property = "id", scope = Recepta.class)
-public class Recepta {
+public class ReceptaString {
     public Long id;
     public String nom;
     public String descripcio;
-    public Collection<Categoria> categories;
+    public Collection<String> categories;
 }

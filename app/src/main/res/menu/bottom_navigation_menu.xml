@@ -8,7 +8,7 @@
         android:title="@string/text_home"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_new_product"
+        android:id="@+id/action_new_recipe"
         android:enabled="true"
         android:icon="@drawable/ic_nueva_receta"
         android:title="@string/text_new_recipe"

@@ -15,16 +15,16 @@
             app:destination="@id/navDrawerActivity" />
     </fragment> -->
     <fragment
-        android:id="@+id/action_new_product"
+        android:id="@+id/action_new_recipe"
         android:name="org.udg.pds.todoandroid.fragment.NewRecipeFragment"
-        android:label="PENJA UN NOU PRODUCTE"
+        android:label="PENJA UNA RECEPTA"
         tools:layout="@layout/fragment_new_recipe" >
     </fragment>
     <fragment
         android:id="@+id/action_home"
-        android:name="org.udg.pds.todoandroid.fragment.CategoriesFragment"
+        android:name="org.udg.pds.todoandroid.fragment.ReceptaFragment"
         android:label="INICI: TOTES LES CATEGORIES"
-        tools:layout="@layout/fragment_categories" >
+        tools:layout="@layout/fragment_recepta_recycler_view_adapter" >
         <action
             android:id="@+id/action_action_profile_to_categories"
             app:destination="@id/action_home" />

@@ -17,6 +17,7 @@ import org.udg.pds.todoandroid.TodoApp;
 import org.udg.pds.todoandroid.databinding.FragmentNewRecipeBinding;
 import org.udg.pds.todoandroid.entity.IdObject;
 import org.udg.pds.todoandroid.entity.Recepta;
+import org.udg.pds.todoandroid.entity.ReceptaString;
 import org.udg.pds.todoandroid.rest.TodoApi;
 
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ public class NewRecipeFragment extends Fragment implements Callback<IdObject> {
                     String descripcio = binding.descripcioRecepta.getText().toString();
                     Collection<String> categories = new ArrayList<>();
                     categories.add(binding.categoriaRecepta.getSelectedItem().toString());
-                    Recepta recepta = new Recepta();
+                    ReceptaString recepta = new ReceptaString();
                     recepta.nom = nom;
                     recepta.descripcio = descripcio;
                     recepta.categories = categories;
@@ -71,6 +72,11 @@ public class NewRecipeFragment extends Fragment implements Callback<IdObject> {
         return root;
     }
     @Override
+    public void onFailure(Call<IdObject> call, Throwable t) {
+        Toast.makeText( this.getContext(), "Error al pujar la recepta", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public void onResponse(Call<IdObject> call, Response<IdObject> response) {
         if (response.isSuccessful()) {
             Toast.makeText(this.getContext(), "Pujat correctament", Toast.LENGTH_LONG).show();
@@ -80,8 +86,5 @@ public class NewRecipeFragment extends Fragment implements Callback<IdObject> {
         }
     }
 
-    @Override
-    public void onFailure(Call<IdObject> call, Throwable t) {
-        Toast.makeText(this.getContext(), "Error al pujar el producte", Toast.LENGTH_LONG).show();
-    }
+
 }
