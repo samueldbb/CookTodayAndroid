@@ -5,15 +5,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import org.udg.pds.todoandroid.R;
 import org.udg.pds.todoandroid.databinding.MainBinding;
+import org.udg.pds.todoandroid.entity.User;
+import org.udg.pds.todoandroid.fragment.OnUserUpdateListener;
+import org.udg.pds.todoandroid.fragment.ProfileFragment;
 
 // This is the main activity that contains the bottom navigation
 // This class SHOULD NOT BE CHANGED except for very specific features
-public class NavigationActivity extends AppCompatActivity {
+public class NavigationActivity extends AppCompatActivity implements OnUserUpdateListener {
 
     MainBinding binding;
     NavHostFragment navHostFragment;
@@ -63,4 +68,23 @@ public class NavigationActivity extends AppCompatActivity {
     public void navigateTo(int id) {
         NavHostFragment.findNavController(navHostFragment).navigate(R.id.settingsFragment);
     }
+
+    @Override
+    public void actualitzarDadesPerfil(User updatedUser) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        ProfileFragment profileFragment = (ProfileFragment) fragmentManager.findFragmentByTag("ProfileFragmentTag");
+        if (profileFragment != null) {
+            profileFragment.actualitzarDadesPerfil(updatedUser);
+        }
+    }
+
+    /*public void showProfileFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ProfileFragment profileFragment = new ProfileFragment();
+        fragmentTransaction.replace(R.id.nav_host_fragment, profileFragment, "ProfileFragmentTag");
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }*/
+
 }

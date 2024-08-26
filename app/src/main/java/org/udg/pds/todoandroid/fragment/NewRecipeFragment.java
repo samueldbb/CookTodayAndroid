@@ -82,6 +82,6 @@ public class NewRecipeFragment extends Fragment implements Callback<IdObject> {
 
     @Override
     public void onFailure(Call<IdObject> call, Throwable t) {
-        Toast.makeText(this.getContext(), "Error al pujar el producte", Toast.LENGTH_LONG).show();
+        Toast.makeText(this.getContext(), "Error al pujar la recepta", Toast.LENGTH_LONG).show();
     }
 }

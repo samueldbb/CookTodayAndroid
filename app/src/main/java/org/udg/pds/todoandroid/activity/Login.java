@@ -63,6 +63,29 @@ public class Login extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        TodoApi todoApi = ((TodoApp) this.getApplication()).getAPI();
+        Call<User> callUser = todoApi.me();
+        callUser.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.isSuccessful()){
+                    ((TodoApp) Login.this.getApplication()).setUser(response.body());
+                }
+                else{
+                    //Toast.makeText(getApplicationContext(),"error guardant l'usuari", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),"error a la crida per obtenir l'usuari", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     // This method is called when the "Login" button is pressed in the Login fragment
     public void checkCredentials(String username, String password) {
         UserLogin ul = new UserLogin();
@@ -75,6 +98,7 @@ public class Login extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
                     Login.this.startActivity(new Intent(Login.this, NavigationActivity.class));
+                    ((TodoApp) Login.this.getApplication()).setUser(response.body());
                     Login.this.finish();
                 } else {
                     Toast toast = Toast.makeText(Login.this, "Error logging in", Toast.LENGTH_SHORT);

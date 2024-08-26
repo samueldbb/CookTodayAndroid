@@ -1,5 +1,15 @@
 <resources>
 
     <color name="black_overlay">#66000000</color>
+    <color name="fondo">#E3CFFF</color>
+    <color name="boton_rojo">#EC415B</color>
+    <color name="boton_rojo2">#E37183</color>
+
+    <color name="lavender">#e6e6fa</color>
+    <color name="lavenderblush">#fff0f5</color>
+    <color name="honeydew">#f0fff0</color>
+    <color name="whitesmoke">#F5F5F5</color>
+    <color name="gainsboro">#DCDCDC</color>
+    <color name="LightBlue">#ADD8E6</color>
 
 </resources>

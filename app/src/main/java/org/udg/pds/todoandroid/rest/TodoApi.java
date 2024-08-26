@@ -15,6 +15,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
@@ -34,6 +35,9 @@ public interface TodoApi {
     @GET("/users/me")
     Call<User> me();
 
+    @PUT("/users/me")
+    Call<User> update(@Body User usuariNou);
+
     @POST("/tasks")
     Call<IdObject> addTask(@Body Task task);
 
@@ -49,6 +53,9 @@ public interface TodoApi {
 
     @POST("/users/me/addRecepta")
     Call<IdObject> addRecepta(@Body Recepta recepta);
+
+    @POST("/users/logout")
+    Call<String> logout();
 
 }
 

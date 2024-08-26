@@ -68,4 +68,9 @@ public class TodoApp extends Application {
     public void setUser(User u){ user = u;}
     public User getUser(){ return user;}
 
+    public void actualitzarDadesPerfil(String nom, String email, String descripcio){
+        user.setUsername(nom);
+        user.setEmail(email);
+        user.setDescripcio(descripcio);
+    }
 }

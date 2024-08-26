@@ -16,109 +16,99 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
-            android:backgroundTint="#DFA245"
+            android:backgroundTint="@color/boton_rojo2"
             android:text="Tornar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/Titol"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayoutEditarUsuari"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="205dp"
-            android:layout_marginTop="119dp"
-            android:layout_marginEnd="215dp"
-            android:layout_marginBottom="39dp"
-            android:text="La Paradeta"
-            app:layout_constraintBottom_toTopOf="@+id/TextNom"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="100dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/BotoTornar"
+            app:layout_constraintVertical_bias="0.174">
 
-        <EditText
-            android:id="@+id/TextEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="11dp"
-            android:ems="10"
-            android:hint="Email"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/TextTelefon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextContrasenya" />
+            <EditText
+                android:id="@+id/TextEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="11dp"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toTopOf="@+id/TextDescripcio"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TextContrasenya" />
 
-        <EditText
-            android:id="@+id/TextNom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="11dp"
-            android:ems="10"
-            android:hint="Nom Usuari"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/TextContrasenya"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/BotoTornar" />
+            <EditText
+                android:id="@+id/TextNom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="11dp"
+                android:ems="10"
+                android:hint="Nom Usuari"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toTopOf="@+id/TextContrasenya"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/BotoTornar" />
 
-        <EditText
-            android:id="@+id/TextTelefon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="11dp"
-            android:ems="10"
-            android:hint="Telèfon"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/TextUbicacio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextEmail" />
 
-        <EditText
-            android:id="@+id/TextContrasenya"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="11dp"
-            android:ems="10"
-            android:hint="Contrasenya"
-            android:inputType="textPassword"
-            app:layout_constraintBottom_toTopOf="@+id/TextEmail"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextNom" />
+            <EditText
+                android:id="@+id/TextContrasenya"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="11dp"
+                android:ems="10"
+                android:hint="Contrasenya"
+                android:inputType="textVisiblePassword"
+                app:layout_constraintBottom_toTopOf="@+id/TextEmail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TextNom" />
 
-        <EditText
-            android:id="@+id/TextUbicacio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="32dp"
-            android:ems="10"
-            android:hint="Ubicació"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/button_register"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextTelefon" />
+            <EditText
+                android:id="@+id/TextDescripcio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="32dp"
+                android:ems="13"
+                android:gravity="top|start"
+                android:hint="Descripció"
+                android:inputType="textMultiLine"
+                android:minLines="4"
+                app:layout_constraintBottom_toTopOf="@+id/button_register"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TextEmail" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/button_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="#DFA245"
             android:text="Registrar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextUbicacio" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutEditarUsuari" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
