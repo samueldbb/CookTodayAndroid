@@ -14,5 +14,7 @@
     <color name="whitesmoke">#F5F5F5</color>
     <color name="gainsboro">#DCDCDC</color>
     <color name="LightBlue">#ADD8E6</color>
+    <color name="White">#FFFFFF</color>
+
 
 </resources>

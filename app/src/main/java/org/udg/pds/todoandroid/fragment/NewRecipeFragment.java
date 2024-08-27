@@ -25,6 +25,7 @@ import org.udg.pds.todoandroid.TodoApp;
 import org.udg.pds.todoandroid.databinding.FragmentNewRecipeBinding;
 import org.udg.pds.todoandroid.entity.IdObject;
 import org.udg.pds.todoandroid.entity.Recepta;
+import org.udg.pds.todoandroid.entity.ReceptaString;
 import org.udg.pds.todoandroid.rest.TodoApi;
 
 import java.io.File;
@@ -193,4 +194,5 @@ public class NewRecipeFragment extends Fragment implements Callback<IdObject> {
     public void onFailure(Call<IdObject> call, Throwable t) {
         Toast.makeText(this.getContext(), "Error al pujar la recepta", Toast.LENGTH_LONG).show();
     }
+
 }

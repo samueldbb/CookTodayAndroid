@@ -22,9 +22,9 @@
     </fragment>
     <fragment
         android:id="@+id/action_home"
-        android:name="org.udg.pds.todoandroid.fragment.CategoriesFragment"
+        android:name="org.udg.pds.todoandroid.fragment.ReceptaFragment"
         android:label="INICI: TOTES LES CATEGORIES"
-        tools:layout="@layout/fragment_categories" >
+        tools:layout="@layout/fragment_recepta_recycler_view_adapter" >
         <action
             android:id="@+id/action_action_profile_to_categories"
             app:destination="@id/action_home" />
