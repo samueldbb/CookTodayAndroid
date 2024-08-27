@@ -10,6 +10,7 @@ import org.udg.pds.todoandroid.entity.UserRegister;
 import java.util.List;
 
 import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -56,6 +57,8 @@ public interface TodoApi {
 
     @POST("/users/logout")
     Call<String> logout();
+
+
 
 }
 

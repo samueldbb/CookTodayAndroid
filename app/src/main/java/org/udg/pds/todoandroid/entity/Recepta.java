@@ -11,5 +11,6 @@ public class Recepta {
     public Long id;
     public String nom;
     public String descripcio;
+    public String imageUrl;
     public Collection<String> categories;
 }
