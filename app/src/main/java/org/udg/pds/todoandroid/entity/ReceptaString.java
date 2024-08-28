@@ -12,4 +12,5 @@ public class ReceptaString {
     public String nom;
     public String descripcio;
     public Collection<String> categories;
+    public String imageUrl;
 }

@@ -85,7 +85,7 @@ public class NewRecipeFragment extends Fragment implements Callback<IdObject> {
                     Collection<String> categories = new ArrayList<>();
                     String imageUrl = imgUrl;
                     categories.add(binding.categoriaRecepta.getSelectedItem().toString());
-                    Recepta recepta = new Recepta();
+                    ReceptaString recepta = new ReceptaString();
                     recepta.nom = nom;
                     recepta.descripcio = descripcio;
                     recepta.categories = categories;
