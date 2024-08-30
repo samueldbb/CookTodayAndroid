@@ -3,10 +3,15 @@ package org.udg.pds.todoandroid.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import org.udg.pds.todoandroid.R;
 
@@ -25,6 +30,8 @@ public class CategoriesFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private long idCat;
 
     public CategoriesFragment() {
         // Required empty public constructor
@@ -60,7 +67,42 @@ public class CategoriesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_categories, container, false);
+
+        View view =inflater.inflate(R.layout.fragment_categories, container, false);
+
+        setOnClickListeners(view);
+
+        return view;
+    }
+
+    private void setOnClickListeners(View view) {
+        setClickListener(view, R.id.imageTots, 0);
+        setClickListener(view, R.id.imageOriental, 1);
+        setClickListener(view, R.id.imageVeggie, 2);
+        setClickListener(view, R.id.imagePeix, 3);
+        setClickListener(view, R.id.imageMediterrani, 4);
+        setClickListener(view, R.id.imageCarn, 5);
+        setClickListener(view, R.id.imageItalia, 6);
+        setClickListener(view, R.id.imageAltres, 7);
+    }
+
+    private void setClickListener(View view, int imageViewId, long idCatValue) {
+        ImageView imageView = view.findViewById(imageViewId);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                ReceptaFragment receptaFragment = new ReceptaFragment(idCatValue);
+
+                fragmentTransaction.add(R.id.nav_host_fragment, receptaFragment);
+                fragmentTransaction.setReorderingAllowed(true);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+
+            }
+        });
     }
 }

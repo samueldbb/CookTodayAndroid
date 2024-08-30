@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TODO Android</string>
+    <string name="app_name">CookToday</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -33,6 +33,9 @@
         <item>Veggie</item>
         <item>Italia</item>
         <item>Oriental</item>
+        <item>Peix</item>
+        <item>Mediterrani</item>
+        <item>Altres</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->

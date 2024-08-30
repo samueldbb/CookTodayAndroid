@@ -8,8 +8,16 @@
     <color name="boton_rojo3">#F391A0</color>
     <color name="logo_red">#57091B</color>
 
+    <color name="verde_suave">#D7FBD9</color>
+    <color name="verde_targeta">#A5D6A7</color>
+
+    <color name="BeigeTargeta">#FFF3E0</color>
+
+    <color name="beigeClaro">#FFECCE</color>
+    <color name="beigeOscuro">#C3B174</color>
+
     <color name="lavender">#e6e6fa</color>
-    <color name="lavenderblush">#fff0f5</color>
+
     <color name="honeydew">#f0fff0</color>
     <color name="whitesmoke">#F5F5F5</color>
     <color name="gainsboro">#DCDCDC</color>

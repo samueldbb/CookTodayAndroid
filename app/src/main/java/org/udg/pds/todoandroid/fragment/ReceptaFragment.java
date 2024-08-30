@@ -34,23 +34,28 @@ public class ReceptaFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
+    private static final String ARG_ID_CAT = "idCat";
 
     ReceptaRecyclerViewAdapter receptaRecyclerViewAdapter;
 
     TodoApi mTodoService;
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
+
+    private Long idCat;
+
     public ReceptaFragment() {
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
-    public static ReceptaFragment newInstance(int columnCount) {
+    public ReceptaFragment(long id){
+        idCat = id;
+    }
+
+
+
+
+    public static ReceptaFragment newInstance(long idCat) {
         ReceptaFragment fragment = new ReceptaFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
+        args.putLong(ARG_ID_CAT, idCat);
         fragment.setArguments(args);
         return fragment;
     }
@@ -60,8 +65,7 @@ public class ReceptaFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
+            idCat = getArguments().getLong(ARG_ID_CAT);        }
     }
 
     @Override
@@ -96,7 +100,7 @@ public class ReceptaFragment extends Fragment {
 
 
     private void updateReceptes() {
-        Call<List<Recepta>> call = mTodoService.listAllReceptes();
+        Call<List<Recepta>> call = mTodoService.receptesCategoria(idCat);
 
         call.enqueue(new Callback<List<Recepta>>() {
             @Override
@@ -119,4 +123,5 @@ public class ReceptaFragment extends Fragment {
     private void showReceptes(List<Recepta> receptes) {
         receptaRecyclerViewAdapter.setReceptes(receptes);
     }
+
 }

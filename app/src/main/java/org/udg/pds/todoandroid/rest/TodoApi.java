@@ -1,5 +1,6 @@
 package org.udg.pds.todoandroid.rest;
 
+import org.udg.pds.todoandroid.entity.Categoria;
 import org.udg.pds.todoandroid.entity.IdObject;
 import org.udg.pds.todoandroid.entity.Recepta;
 import org.udg.pds.todoandroid.entity.ReceptaString;
@@ -61,6 +62,12 @@ public interface TodoApi {
 
     @POST("/users/logout")
     Call<String> logout();
+
+    @GET("/categories")
+    Call<List<Categoria>> llistarCategories();
+
+    @GET("/categories/{id}/receptes")
+    Call<List<Recepta>> receptesCategoria(@Path("id") Long id);
 
 
 
