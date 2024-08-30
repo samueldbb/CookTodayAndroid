@@ -3,9 +3,12 @@ package org.udg.pds.todoandroid.fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import org.udg.pds.todoandroid.R;
 import org.udg.pds.todoandroid.entity.Recepta;
@@ -35,6 +38,9 @@ public class ReceptaRecyclerViewAdapter extends RecyclerView.Adapter<ReceptaRecy
         holder.mItem = mValues.get(position);
         holder.mName.setText(mValues.get(position).nom);
         holder.mDescription.setText(mValues.get(position).descripcio);
+        if (!mValues.get(position).imageUrl.isEmpty()) {
+            Picasso.get().load(mValues.get(position).imageUrl).into(holder.mImage);
+        }
     }
 
     @Override
@@ -51,6 +57,7 @@ public class ReceptaRecyclerViewAdapter extends RecyclerView.Adapter<ReceptaRecy
         public final View mView;
         public final TextView mName;
         public final TextView mDescription;
+        public final ImageView mImage;
 
         public Recepta mItem;
 
@@ -59,6 +66,7 @@ public class ReceptaRecyclerViewAdapter extends RecyclerView.Adapter<ReceptaRecy
             mView = view;
             mName = (TextView) view.findViewById(R.id.name);
             mDescription = (TextView) view.findViewById(R.id.description);
+            mImage = view.findViewById(R.id.idImage);
         }
 
         @Override
