@@ -2,6 +2,7 @@ package org.udg.pds.todoandroid.rest;
 
 import org.udg.pds.todoandroid.entity.Categoria;
 import org.udg.pds.todoandroid.entity.IdObject;
+import org.udg.pds.todoandroid.entity.R_recepta;
 import org.udg.pds.todoandroid.entity.Recepta;
 import org.udg.pds.todoandroid.entity.ReceptaString;
 import org.udg.pds.todoandroid.entity.Task;
@@ -71,6 +72,12 @@ public interface TodoApi {
 
     @GET("/receptes/conte/{paraula}")
     Call<List<Recepta>> getReceptesAmbParaula(@Path("paraula") String paraula);
+
+    @PUT("/users/me/preferits")
+    Call<String> addRemoveReceptaPreferida(@Body R_recepta recepta);
+
+    @GET("/users/me/preferits")
+    Call<List<Recepta>> getReceptesPreferides();
 
 
 

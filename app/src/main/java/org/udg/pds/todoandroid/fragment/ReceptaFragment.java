@@ -79,6 +79,7 @@ public class ReceptaFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recepta_recycler_view_adapter , container, false);
 
+        mTodoService = ((TodoApp) this.getActivity().getApplication()).getAPI();
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -88,7 +89,7 @@ public class ReceptaFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            receptaRecyclerViewAdapter = new ReceptaRecyclerViewAdapter();
+            receptaRecyclerViewAdapter = new ReceptaRecyclerViewAdapter(mTodoService);
             recyclerView.setAdapter(receptaRecyclerViewAdapter);
         }
         return view;
@@ -116,8 +117,29 @@ public class ReceptaFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Recepta>> call, Response<List<Recepta>> response) {
                 if (response.isSuccessful()) {
-                    ReceptaFragment.this.showReceptes(response.body());
-                    Toast.makeText(ReceptaFragment.this.getContext(), "Mira les receptes!", Toast.LENGTH_LONG).show();
+                    Call<List<Recepta>> call2 = mTodoService.getReceptesPreferides();
+                    call2.enqueue(new Callback<List<Recepta>>() {
+                        @Override
+                        public void onResponse(Call<List<Recepta>> call2, Response<List<Recepta>> response2) {
+                            if (response2.isSuccessful()) {
+                                for (Recepta recepta: response.body()) {
+                                    for(Recepta f: response2.body())
+                                    {
+                                        if (f.id == recepta.id)
+                                        {
+                                            recepta.setChecked(true);
+                                        }
+                                    }
+                                }
+                                ReceptaFragment.this.showReceptes(response.body());
+                                Toast.makeText(ReceptaFragment.this.getContext(), "Mira les receptes!", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<List<Recepta>> call2, Throwable t) {
+                            Toast.makeText(ReceptaFragment.this.getContext(), "Error fent la crida", Toast.LENGTH_LONG).show();
+                        }
+                    });
                 } else {
                     Toast.makeText(ReceptaFragment.this.getContext(), "Error obtenint les receptes", Toast.LENGTH_LONG).show();
                 }

@@ -13,4 +13,12 @@ public class Recepta {
     public String descripcio;
     public String imageUrl;
     public Collection<Categoria> categories;
+    public boolean isChecked = false;
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean isChecked) {
+        this.isChecked = isChecked;
+    }
 }
