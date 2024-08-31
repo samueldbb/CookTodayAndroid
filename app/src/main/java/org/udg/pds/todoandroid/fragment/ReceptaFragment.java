@@ -41,12 +41,18 @@ public class ReceptaFragment extends Fragment {
     TodoApi mTodoService;
 
     private Long idCat;
+    private String paraula;
 
     public ReceptaFragment() {
     }
 
     public ReceptaFragment(long id){
         idCat = id;
+    }
+
+    public ReceptaFragment(long id, String p){
+        idCat = id;
+        paraula = p;
     }
 
 
@@ -100,7 +106,11 @@ public class ReceptaFragment extends Fragment {
 
 
     private void updateReceptes() {
-        Call<List<Recepta>> call = mTodoService.receptesCategoria(idCat);
+        //en cas que utilitzem el buscador
+        Call<List<Recepta>> call = mTodoService.getReceptesAmbParaula(paraula);
+
+        //en cas que utilitzem filtrem per categoria
+        if(idCat<10) call = mTodoService.receptesCategoria(idCat);
 
         call.enqueue(new Callback<List<Recepta>>() {
             @Override

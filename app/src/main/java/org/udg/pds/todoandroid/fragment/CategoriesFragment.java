@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import org.udg.pds.todoandroid.R;
@@ -72,8 +73,32 @@ public class CategoriesFragment extends Fragment {
 
         setOnClickListeners(view);
 
+        SearchView buscador = view.findViewById(R.id.searchView);
+
+        buscador.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String paraula) {
+
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                ReceptaFragment receptaFragment = new ReceptaFragment(100, paraula);
+
+                fragmentTransaction.add(R.id.nav_host_fragment, receptaFragment);
+                fragmentTransaction.setReorderingAllowed(true);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+                return true;
+            }
+            @Override
+            public boolean onQueryTextChange(String paraula) {
+                return false;
+            }
+        });
+
         return view;
     }
+
 
     private void setOnClickListeners(View view) {
         setClickListener(view, R.id.imageTots, 0);

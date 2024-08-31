@@ -69,6 +69,9 @@ public interface TodoApi {
     @GET("/categories/{id}/receptes")
     Call<List<Recepta>> receptesCategoria(@Path("id") Long id);
 
+    @GET("/receptes/conte/{paraula}")
+    Call<List<Recepta>> getReceptesAmbParaula(@Path("paraula") String paraula);
+
 
 
 }
