@@ -73,6 +73,9 @@ public interface TodoApi {
     @GET("/receptes/conte/{paraula}")
     Call<List<Recepta>> getReceptesAmbParaula(@Path("paraula") String paraula);
 
+    @GET("/receptes/{id}")
+    Call<Recepta> getRecepta(@Path("id") Long id);
+
     @PUT("/users/me/preferits")
     Call<String> addRemoveReceptaPreferida(@Body R_recepta recepta);
 

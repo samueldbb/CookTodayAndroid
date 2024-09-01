@@ -9,11 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
 import org.udg.pds.todoandroid.R;
+import org.udg.pds.todoandroid.databinding.FragmentDetallsReceptaBinding;
 import org.udg.pds.todoandroid.entity.R_recepta;
 import org.udg.pds.todoandroid.entity.Recepta;
 import org.udg.pds.todoandroid.fragment.placeholder.PlaceholderContent.PlaceholderItem;
@@ -103,6 +107,19 @@ public class ReceptaRecyclerViewAdapter extends RecyclerView.Adapter<ReceptaRecy
                         }
                     });
                 }
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DetallsReceptaFragment detalleRecetaFragment = new DetallsReceptaFragment(holder.mItem.id);
+                FragmentManager fragmentManager = ((AppCompatActivity) v.getContext()).getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                    .replace(R.id.nav_host_fragment, detalleRecetaFragment)
+                    .addToBackStack(null)
+                    .commit();
             }
         });
     }
