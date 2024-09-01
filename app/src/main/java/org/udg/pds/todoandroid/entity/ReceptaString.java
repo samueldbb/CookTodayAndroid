@@ -11,6 +11,8 @@ public class ReceptaString {
     public Long id;
     public String nom;
     public String descripcio;
+    public String passos;
+    public String ingredients;
     public Collection<String> categories;
     public String imageUrl;
     public boolean isChecked = false;

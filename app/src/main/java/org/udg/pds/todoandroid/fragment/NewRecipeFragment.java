@@ -82,12 +82,16 @@ public class NewRecipeFragment extends Fragment implements Callback<IdObject> {
                 try {
                     String nom = binding.nomRecepta.getText().toString();
                     String descripcio = binding.descripcioRecepta.getText().toString();
+                    String passos = binding.passosRecepta.getText().toString();
+                    String ingredients = binding.ingredientsRecepta.getText().toString();
                     Collection<String> categories = new ArrayList<>();
                     String imageUrl = imgUrl;
                     categories.add(binding.categoriaRecepta.getSelectedItem().toString());
                     ReceptaString recepta = new ReceptaString();
                     recepta.nom = nom;
                     recepta.descripcio = descripcio;
+                    recepta.passos = passos;
+                    recepta.ingredients = ingredients;
                     recepta.categories = categories;
                     recepta.imageUrl = imageUrl;
                     Call<IdObject> call = mTodoService.addRecepta(recepta);
@@ -104,6 +108,8 @@ public class NewRecipeFragment extends Fragment implements Callback<IdObject> {
     private void buida() {
         binding.nomRecepta.setText("");
         binding.descripcioRecepta.setText("");
+        binding.ingredientsRecepta.setText("");
+        binding.passosRecepta.setText("");
         binding.ivPreview.setImageURI(null);
         binding.ivDownload.setImageDrawable(null);
         binding.categoriaRecepta.setSelection(0);
