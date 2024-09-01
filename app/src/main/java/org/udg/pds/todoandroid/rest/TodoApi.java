@@ -34,7 +34,7 @@ public interface TodoApi {
     Call<String> register(@Body UserRegister register);
 
     @GET("/users/check")
-    Call<String> check();
+    Call<User> check();
 
     @GET("/users/me")
     Call<User> me();

@@ -21,11 +21,12 @@
         android:label="PENJA UNA NOVA RECEPTA"
         tools:layout="@layout/fragment_new_recipe" >
     </fragment>
-    <fragment
+   <!-- <fragment
         android:id="@+id/action_recepta"
         android:name="org.udg.pds.todoandroid.fragment.CategoriesFragment"
         android:label="TOTES LES CATEGORIES"
         tools:layout="@layout/fragment_categories" />
+        -->
     <fragment
         android:id="@+id/action_favorites"
         android:name="org.udg.pds.todoandroid.fragment.FavoritesFragment"

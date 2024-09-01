@@ -80,10 +80,13 @@ public class CategoriesFragment extends Fragment {
             public boolean onQueryTextSubmit(String paraula) {
 
                 FragmentManager fragmentManager = getFragmentManager();
+
+                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 ReceptaFragment receptaFragment = new ReceptaFragment(100, paraula);
 
-                fragmentTransaction.add(R.id.nav_host_fragment, receptaFragment);
+                fragmentTransaction.replace(R.id.nav_host_fragment, receptaFragment);
                 fragmentTransaction.setReorderingAllowed(true);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
@@ -118,10 +121,12 @@ public class CategoriesFragment extends Fragment {
             public void onClick(View v) {
 
                 FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 ReceptaFragment receptaFragment = new ReceptaFragment(idCatValue);
 
-                fragmentTransaction.add(R.id.nav_host_fragment, receptaFragment);
+                fragmentTransaction.replace(R.id.nav_host_fragment, receptaFragment);
                 fragmentTransaction.setReorderingAllowed(true);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();

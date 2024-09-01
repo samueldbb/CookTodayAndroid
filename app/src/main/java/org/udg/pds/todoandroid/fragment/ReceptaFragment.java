@@ -16,6 +16,7 @@ import android.widget.Toast;
 import org.udg.pds.todoandroid.R;
 import org.udg.pds.todoandroid.TodoApp;
 import org.udg.pds.todoandroid.entity.Recepta;
+import org.udg.pds.todoandroid.entity.User;
 import org.udg.pds.todoandroid.fragment.placeholder.PlaceholderContent;
 import org.udg.pds.todoandroid.rest.TodoApi;
 
@@ -117,29 +118,36 @@ public class ReceptaFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Recepta>> call, Response<List<Recepta>> response) {
                 if (response.isSuccessful()) {
-                    Call<List<Recepta>> call2 = mTodoService.getReceptesPreferides();
-                    call2.enqueue(new Callback<List<Recepta>>() {
-                        @Override
-                        public void onResponse(Call<List<Recepta>> call2, Response<List<Recepta>> response2) {
-                            if (response2.isSuccessful()) {
-                                for (Recepta recepta: response.body()) {
-                                    for(Recepta f: response2.body())
-                                    {
-                                        if (f.id == recepta.id)
+                    if(usuariLogejat()){
+                        List<Recepta> receptes = response.body();
+                        updateReceptesWithFavorites(receptes);
+                    }
+                    else{
+                        Call<List<Recepta>> call2 = mTodoService.getReceptesPreferides();
+                        call2.enqueue(new Callback<List<Recepta>>() {
+                            @Override
+                            public void onResponse(Call<List<Recepta>> call2, Response<List<Recepta>> response2) {
+                                if (response2.isSuccessful()) {
+                                    for (Recepta recepta: response.body()) {
+                                        for(Recepta f: response2.body())
                                         {
-                                            recepta.setChecked(true);
+                                            if (f.id == recepta.id)
+                                            {
+                                                recepta.setChecked(true);
+                                            }
                                         }
                                     }
+                                    ReceptaFragment.this.showReceptes(response.body());
+                                    Toast.makeText(ReceptaFragment.this.getContext(), "Mira les receptes!", Toast.LENGTH_LONG).show();
                                 }
-                                ReceptaFragment.this.showReceptes(response.body());
-                                Toast.makeText(ReceptaFragment.this.getContext(), "Mira les receptes!", Toast.LENGTH_LONG).show();
                             }
-                        }
-                        @Override
-                        public void onFailure(Call<List<Recepta>> call2, Throwable t) {
-                            Toast.makeText(ReceptaFragment.this.getContext(), "Error fent la crida", Toast.LENGTH_LONG).show();
-                        }
-                    });
+                            @Override
+                            public void onFailure(Call<List<Recepta>> call2, Throwable t) {
+                                Toast.makeText(ReceptaFragment.this.getContext(), "Error fent la crida", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+
                 } else {
                     Toast.makeText(ReceptaFragment.this.getContext(), "Error obtenint les receptes", Toast.LENGTH_LONG).show();
                 }
@@ -154,6 +162,49 @@ public class ReceptaFragment extends Fragment {
 
     private void showReceptes(List<Recepta> receptes) {
         receptaRecyclerViewAdapter.setReceptes(receptes);
+    }
+
+    private boolean usuariLogejat(){
+        final boolean[] registrat = {true};
+        Call<User> call = mTodoService.check();
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()) {
+                    if(response.body()==null) registrat[0] =false;
+                }
+            }
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(ReceptaFragment.this.getContext(), "Error making call", Toast.LENGTH_LONG).show();
+            }
+        });
+        return registrat[0];
+    }
+
+    private void updateReceptesWithFavorites(List<Recepta> receptes) {
+        Call<List<Recepta>> callFavorites = mTodoService.getReceptesPreferides();
+        callFavorites.enqueue(new Callback<List<Recepta>>() {
+            @Override
+            public void onResponse(Call<List<Recepta>> call, Response<List<Recepta>> response) {
+                if (response.isSuccessful()) {
+                    List<Recepta> receptesFavorites = response.body();
+                    for (Recepta recepta : receptes) {
+                        for (Recepta f : receptesFavorites) {
+                            if (f.id == recepta.id) {
+                                recepta.setChecked(true);
+                            }
+                        }
+                    }
+                    showReceptes(receptes);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Recepta>> call, Throwable t) {
+                Toast.makeText(ReceptaFragment.this.getContext(), "Error obtenint les receptes favorites", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 }

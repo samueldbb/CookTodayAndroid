@@ -93,7 +93,7 @@ public class ReceptaRecyclerViewAdapter extends RecyclerView.Adapter<ReceptaRecy
                                 holder.mItem.isChecked = false;
                                 Toast.makeText(buttonView.getContext(), "Mira les receptes preferides!", Toast.LENGTH_LONG).show();
                             } else {
-                                Toast.makeText(buttonView.getContext(), "Error llegint els preferits", Toast.LENGTH_LONG).show();
+                                Toast.makeText(buttonView.getContext(), "Error llegint els preferits 2", Toast.LENGTH_LONG).show();
                             }
                         }
 
