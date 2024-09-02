@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,8 +17,11 @@ import com.squareup.picasso.Picasso;
 
 import org.udg.pds.todoandroid.R;
 import org.udg.pds.todoandroid.TodoApp;
+import org.udg.pds.todoandroid.entity.R_recepta;
 import org.udg.pds.todoandroid.entity.Recepta;
 import org.udg.pds.todoandroid.rest.TodoApi;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,7 +72,6 @@ public class DetallsReceptaFragment extends Fragment {
 
         if (getArguments() != null) {
             receptaId = getArguments().getLong("receptaId");
-            Log.d("DetallsReceptaFragment", "receptaId: " + receptaId);
         } else {
             Log.d("DetallsReceptaFragment", "getArguments() es null");
         }
@@ -82,14 +85,15 @@ public class DetallsReceptaFragment extends Fragment {
         TextView passos = view.findViewById(R.id.detall_passos_list);
         TextView ingredients = view.findViewById(R.id.detall_ingredients_list);
         ImageView imatge = view.findViewById(R.id.detall_imatge);
+        CheckBox checkBox = view.findViewById(R.id.checkbox_detall);
 
-        carregarDetalls(receptaId, nom, descripcio, passos, imatge, ingredients);
+        carregarDetalls(receptaId, nom, descripcio, passos, imatge, ingredients, checkBox);
 
         return view;
     }
 
     private void carregarDetalls(Long receptaId, TextView nom, TextView descripcio, TextView passos,
-                                 ImageView imatge, TextView ingredients) {
+                                 ImageView imatge, TextView ingredients, CheckBox checkBox) {
 
         Call<Recepta> call = mTodoService.getRecepta(receptaId);
         call.enqueue(new Callback<Recepta>() {
@@ -105,6 +109,32 @@ public class DetallsReceptaFragment extends Fragment {
                     if (!recepta.imageUrl.isEmpty()) {
                         Picasso.get().load(recepta.imageUrl).into(imatge);
                     }
+
+                    actualitzarCheckbox(checkBox);
+
+                    checkBox.setChecked(recepta.isChecked());
+                    checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                        R_recepta r = new R_recepta();
+                        r.id = recepta.id;
+                        r.posar = isChecked;
+                        Call<String> callUpdate = mTodoService.addRemoveReceptaPreferida(r);
+                        callUpdate.enqueue(new Callback<String>() {
+                            @Override
+                            public void onResponse(Call<String> call, Response<String> response) {
+                                if (response.isSuccessful()) {
+                                    recepta.isChecked = isChecked;
+                                    Toast.makeText(getContext(), "Afegit a preferits", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getContext(), "Error al afegir a preferits", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<String> call, Throwable t) {
+                                Toast.makeText(getContext(), "Error a la crida", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    });
                 }
                 else {
                     Toast.makeText(DetallsReceptaFragment.this.getContext(), "Error obtenint recepta", Toast.LENGTH_LONG).show();
@@ -118,4 +148,27 @@ public class DetallsReceptaFragment extends Fragment {
         });
     }
 
+    private void actualitzarCheckbox(CheckBox checkBox) {
+        Call<List<Recepta>> callFavorites = mTodoService.getReceptesPreferides();
+        callFavorites.enqueue(new Callback<List<Recepta>>() {
+            @Override
+            public void onResponse(Call<List<Recepta>> call, Response<List<Recepta>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Recepta> receptesFavorites = response.body();
+                    for (Recepta f : receptesFavorites) {
+                        if (f.id.equals(recepta.id)) {
+                            checkBox.setChecked(true);
+                            return;
+                        }
+                    }
+                    checkBox.setChecked(false);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Recepta>> call, Throwable t) {
+                Toast.makeText(getContext(), "Error obteniendo recetas favoritas", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 }
