@@ -72,7 +72,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- CardView que engloba los TextViews de ingredients -->
         <androidx.cardview.widget.CardView
             android:id="@+id/card_ingredients"
             android:layout_width="0dp"
