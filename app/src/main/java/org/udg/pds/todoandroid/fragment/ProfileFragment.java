@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,8 +21,11 @@ import org.udg.pds.todoandroid.R;
 import org.udg.pds.todoandroid.TodoApp;
 import org.udg.pds.todoandroid.activity.Login;
 import org.udg.pds.todoandroid.activity.NavigationActivity;
+import org.udg.pds.todoandroid.entity.Recepta;
 import org.udg.pds.todoandroid.entity.User;
 import org.udg.pds.todoandroid.rest.TodoApi;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,6 +47,8 @@ public class ProfileFragment extends Fragment implements OnUserUpdateListener{
     private TodoApi mTodoService;
     private NavigationActivity nAct;
     private User user;
+
+    private ProfileAdapter adapter;
 
     private OnUserUpdateListener userUpdateListener;
 
@@ -126,10 +133,16 @@ public class ProfileFragment extends Fragment implements OnUserUpdateListener{
             TextView nom = view.findViewById(R.id.nomPerfil);
             TextView email = view.findViewById(R.id.correuPerfil);
             TextView descripcio = view.findViewById(R.id.descripcioPerfil);
+            RecyclerView rv = view.findViewById(R.id.recyclerViewProfile);
 
             nom.setText(user.username);
             email.setText(user.email);
             descripcio.setText(user.descripcio);
+
+            rv.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+            adapter = new ProfileAdapter();
+            rv.setAdapter(adapter);
+            fetchReceptesUsuari();
         }
         else {
             Toast t = Toast.makeText(getActivity(), "Error mostrant les dades l'usuari", Toast.LENGTH_LONG);
@@ -170,5 +183,26 @@ public class ProfileFragment extends Fragment implements OnUserUpdateListener{
 
         view.invalidate();
 
+    }
+
+    private void fetchReceptesUsuari() {
+        Call<List<Recepta>> call = mTodoService.getMyReceptes();
+
+        call.enqueue(new Callback<List<Recepta>>() {
+            @Override
+            public void onResponse(Call<List<Recepta>> call, Response<List<Recepta>> response) {
+                if (response.isSuccessful()) {
+                    adapter.setProducts(response.body());
+                    adapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(getContext(), "Error fetching user uploaded products", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Recepta>> call, Throwable t) {
+                Toast.makeText(getContext(), "Error fetching user uploaded products", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

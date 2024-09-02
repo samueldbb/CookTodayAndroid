@@ -1,99 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/beigeOscuro"
-    android:id="@+id/perfilFragmentCL">
+    android:background="@color/beigeOscuro">
 
-    <ImageView
-        android:id="@+id/imatge_perfil_amb_id"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="foto_perfil"
-        android:src="@drawable/ic_profile_chef"
-        app:layout_constraintBottom_toTopOf="@+id/nomPerfil"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.34"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/logout_button"
-        android:layout_width="134dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/boton_rojo"
-        android:drawableStart="@drawable/ic_logout"
-        android:drawablePadding="4dp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:text="TANCAR SESSIÓ"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imatge_perfil_amb_id"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/correuPerfil"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/perfilFragmentCL"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="usuari@correu.com"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.33"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nomPerfil" />
+        android:background="@color/beigeOscuro">
 
-    <TextView
-        android:id="@+id/nomPerfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Nom de l'Usuari"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.323"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imatge_perfil_amb_id" />
+        <ImageView
+            android:id="@+id/imatge_perfil_amb_id"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="foto_perfil"
+            android:src="@drawable/ic_profile_chef"
+            app:layout_constraintBottom_toTopOf="@+id/nomPerfil"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.34"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/descripcioPerfil"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:elevation="2dp"
-        android:padding="5dp"
-        android:text="Aquesta és la descripció de l'usuari. Aquí pots escriure sobre tu, els teus interessos o qualsevol altra informació rellevant."
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/correuPerfil"
-        app:layout_constraintWidth_percent="0.9" />
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="134dp"
+            android:layout_height="66dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/boton_rojo"
+            android:drawableStart="@drawable/ic_logout"
+            android:drawablePadding="4dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="TANCAR SESSIÓ"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imatge_perfil_amb_id"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/botoEditar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:backgroundTint="#DFA245"
-        android:text="EDITAR PERFIL"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toEndOf="@+id/imatge_perfil_amb_id"
-        app:layout_constraintTop_toBottomOf="@+id/logout_button" />
+        <TextView
+            android:id="@+id/correuPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="usuari@correu.com"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.33"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nomPerfil" />
 
+        <TextView
+            android:id="@+id/nomPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Nom de l'Usuari"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.323"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imatge_perfil_amb_id" />
 
+        <TextView
+            android:id="@+id/descripcioPerfil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:elevation="2dp"
+            android:padding="5dp"
+            android:text="Aquesta és la descripció de l'usuari. Aquí pots escriure sobre tu, els teus interessos o qualsevol altra informació rellevant."
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.487"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/correuPerfil"
+            app:layout_constraintWidth_percent="0.9" />
 
+        <Button
+            android:id="@+id/botoEditar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:backgroundTint="#DFA245"
+            android:text="EDITAR PERFIL"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toEndOf="@+id/imatge_perfil_amb_id"
+            app:layout_constraintTop_toBottomOf="@+id/logout_button" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descripcioPerfil"
+            app:spanCount="1"
+            tools:context=".fragment.ProfileFragment"
+            tools:listitem="@layout/fragment_my_recepta" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

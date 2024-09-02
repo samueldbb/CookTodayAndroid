@@ -82,7 +82,7 @@ public interface TodoApi {
     @GET("/users/me/preferits")
     Call<List<Recepta>> getReceptesPreferides();
 
-
-
+    @GET ("/users/me/receptesPujades")
+    Call<List<Recepta>> getMyReceptes();
 }
 
