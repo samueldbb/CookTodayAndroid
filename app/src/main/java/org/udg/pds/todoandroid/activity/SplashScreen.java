@@ -39,20 +39,20 @@ public class SplashScreen extends AppCompatActivity {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-
+                Intent intent;
                 if (response.isSuccessful()) {
+                    // Usuario autenticado
                     ((TodoApp) SplashScreen.this.getApplication()).setUser(response.body());
-                    //SplashScreen.this.startActivity(new Intent(SplashScreen.this, NavigationActivity.class));
-                    //SplashScreen.this.finish();
+                    intent = new Intent(SplashScreen.this, NavigationActivity.class);
                 } else {
-                    //SplashScreen.this.startActivity(new Intent(SplashScreen.this, Login.class));
-                    //SplashScreen.this.finish();
+                    // Usuario no autenticado
+                    intent = new Intent(SplashScreen.this, Login.class);
                 }
 
+                // Redirigir después de un retraso
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(SplashScreen.this, Login.class);
                         startActivity(intent);
                         finish();
                     }
@@ -65,7 +65,6 @@ public class SplashScreen extends AppCompatActivity {
                 toast.show();
             }
         });
-
-
     }
+
 }
