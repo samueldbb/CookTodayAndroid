@@ -27,11 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DetallsReceptaFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class DetallsReceptaFragment extends Fragment {
 
     private static final String ARG_RECEPTA_ID = "recepta_id";

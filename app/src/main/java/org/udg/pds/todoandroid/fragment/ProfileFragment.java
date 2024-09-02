@@ -205,4 +205,5 @@ public class ProfileFragment extends Fragment implements OnUserUpdateListener{
             }
         });
     }
+
 }
