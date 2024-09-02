@@ -12,13 +12,16 @@ import androidx.navigation.ui.NavigationUI;
 
 import org.udg.pds.todoandroid.R;
 import org.udg.pds.todoandroid.databinding.MainBinding;
+import org.udg.pds.todoandroid.entity.Recepta;
 import org.udg.pds.todoandroid.entity.User;
+import org.udg.pds.todoandroid.fragment.DetallsMyReceptaFragment;
+import org.udg.pds.todoandroid.fragment.OnReceptaUpdateListener;
 import org.udg.pds.todoandroid.fragment.OnUserUpdateListener;
 import org.udg.pds.todoandroid.fragment.ProfileFragment;
 
 // This is the main activity that contains the bottom navigation
 // This class SHOULD NOT BE CHANGED except for very specific features
-public class NavigationActivity extends AppCompatActivity implements OnUserUpdateListener {
+public class NavigationActivity extends AppCompatActivity implements OnUserUpdateListener, OnReceptaUpdateListener {
 
     MainBinding binding;
     NavHostFragment navHostFragment;
@@ -75,6 +78,15 @@ public class NavigationActivity extends AppCompatActivity implements OnUserUpdat
         ProfileFragment profileFragment = (ProfileFragment) fragmentManager.findFragmentByTag("ProfileFragmentTag");
         if (profileFragment != null) {
             profileFragment.actualitzarDadesPerfil(updatedUser);
+        }
+    }
+
+    @Override
+    public void actualitzarDadesRecepta(Recepta updatedRecepta) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        DetallsMyReceptaFragment detallsMyReceptaFragment = (DetallsMyReceptaFragment) fragmentManager.findFragmentByTag("DetallsMyReceptaFragmentTag");
+        if (detallsMyReceptaFragment != null) {
+            detallsMyReceptaFragment.actualitzarDadesRecepta(updatedRecepta);
         }
     }
 

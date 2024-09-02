@@ -58,6 +58,9 @@ public interface TodoApi {
     @POST("/users/me/addRecepta")
     Call<IdObject> addRecepta(@Body ReceptaString recepta);
 
+    @PUT("/receptes/edit/{id}")
+    Call<IdObject> editRecepta(@Path("id") Long id, @Body ReceptaString recepta);
+
     @GET("/users/me/receptesAltres")
     Call<List<Recepta>> listAllReceptes();
 

@@ -3,6 +3,8 @@ package org.udg.pds.todoandroid.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +22,7 @@ import org.udg.pds.todoandroid.R;
 import org.udg.pds.todoandroid.TodoApp;
 import org.udg.pds.todoandroid.entity.R_recepta;
 import org.udg.pds.todoandroid.entity.Recepta;
+import org.udg.pds.todoandroid.entity.User;
 import org.udg.pds.todoandroid.rest.TodoApi;
 
 import retrofit2.Call;
@@ -31,11 +34,13 @@ import retrofit2.Response;
  * Use the {@link DetallsMyReceptaFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DetallsMyReceptaFragment extends Fragment {
+public class DetallsMyReceptaFragment extends Fragment implements OnReceptaUpdateListener {
 
     private static final String ARG_RECEPTA_ID = "recepta_id";
     private Long receptaId;
     private Recepta recepta;
+
+    View view;
 
     TodoApi mTodoService;
 
@@ -69,7 +74,7 @@ public class DetallsMyReceptaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view =  inflater.inflate(R.layout.fragment_detalls_my_recepta, container, false);
+        view =  inflater.inflate(R.layout.fragment_detalls_my_recepta, container, false);
 
         if (getArguments() != null) {
             receptaId = getArguments().getLong("receptaId");
@@ -89,6 +94,20 @@ public class DetallsMyReceptaFragment extends Fragment {
         Button button = view.findViewById(R.id.button_detall);
 
         carregarDetalls(receptaId, nom, descripcio, passos, imatge, ingredients, button);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                EditarDadesReceptaFragment editarDadesReceptaFragment = new EditarDadesReceptaFragment(recepta);
+
+                fragmentTransaction.add(R.id.nav_host_fragment, editarDadesReceptaFragment);
+                fragmentTransaction.setReorderingAllowed(true);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
 
         return view;
     }
@@ -122,5 +141,26 @@ public class DetallsMyReceptaFragment extends Fragment {
                 Toast.makeText(DetallsMyReceptaFragment.this.getContext(), "Error fent la crida", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void actualitzarDadesRecepta(Recepta receptaActualitzada){
+        recepta.nom = receptaActualitzada.nom;
+        recepta.passos = receptaActualitzada.passos;
+        recepta.descripcio = receptaActualitzada.descripcio;
+        recepta.llista_ingredients = receptaActualitzada.llista_ingredients;
+
+        TextView nom = view.findViewById(R.id.detall_nom_my);
+        TextView passos = view.findViewById(R.id.detall_passos_list_my);
+        TextView ingredients = view.findViewById(R.id.detall_ingredients_list_my);
+        TextView descripcio = view.findViewById(R.id.detall_descripcio_my);
+
+
+        nom.setText(recepta.nom);
+        passos.setText(recepta.passos);
+        descripcio.setText(recepta.descripcio);
+        ingredients.setText(recepta.llista_ingredients);
+
+        view.invalidate();
+
     }
 }

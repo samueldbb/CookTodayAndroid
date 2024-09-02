@@ -192,7 +192,7 @@ public class ProfileFragment extends Fragment implements OnUserUpdateListener{
             @Override
             public void onResponse(Call<List<Recepta>> call, Response<List<Recepta>> response) {
                 if (response.isSuccessful()) {
-                    adapter.setProducts(response.body());
+                    adapter.setReceptes(response.body());
                     adapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(getContext(), "Error fetching user uploaded products", Toast.LENGTH_SHORT).show();

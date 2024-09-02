@@ -79,15 +79,17 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
         }
     }
 
+    public void setReceptes(List<Recepta> receptes) {
+        this.receptes = receptes;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return receptes.size();
     }
 
-    public void setProducts(List<Recepta> receptes) {
-        this.receptes = receptes;
-        notifyDataSetChanged();
-    }
+
 
     public static class ProfileViewHolder extends RecyclerView.ViewHolder {
         ImageView idImage;
