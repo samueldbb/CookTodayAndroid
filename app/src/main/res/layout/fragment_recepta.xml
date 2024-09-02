@@ -36,7 +36,9 @@
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/idImage"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end" />
 
         <TextView
             android:id="@+id/description"
@@ -46,7 +48,9 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@+id/idImage"
-            android:textSize="14sp"/>
+            android:textSize="14sp"
+            android:maxLines="2"
+            android:ellipsize="end" />
 
         <CheckBox
             android:id="@+id/checkbox"
