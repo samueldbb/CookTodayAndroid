@@ -2,6 +2,7 @@ package org.udg.pds.todoandroid.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,8 @@ import retrofit2.Response;
 
 
 public class SplashScreen extends AppCompatActivity {
+
+    private int delaySplashScreen = 2500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +45,18 @@ public class SplashScreen extends AppCompatActivity {
                     //SplashScreen.this.startActivity(new Intent(SplashScreen.this, NavigationActivity.class));
                     //SplashScreen.this.finish();
                 } else {
-                    SplashScreen.this.startActivity(new Intent(SplashScreen.this, Login.class));
-                    SplashScreen.this.finish();
+                    //SplashScreen.this.startActivity(new Intent(SplashScreen.this, Login.class));
+                    //SplashScreen.this.finish();
                 }
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(SplashScreen.this, Login.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }, delaySplashScreen);
             }
 
             @Override

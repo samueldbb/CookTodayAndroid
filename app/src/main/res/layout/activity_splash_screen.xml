@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/boton_rojo3"
+    android:background="@color/beigeClaro"
     tools:context=".activity.SplashScreen">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -21,7 +21,7 @@
             android:gravity="center"
             android:keepScreenOn="true"
             android:text="CookToday"
-            android:textColor="@color/logo_red"
+            android:textColor="@color/beigeOscuro"
             android:textSize="70sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,7 +36,7 @@
             android:layout_width="264dp"
             android:layout_height="298dp"
             android:rotation="45"
-            app:tint="@color/logo_red"
+            app:tint="@color/beigeOscuro"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
