@@ -30,6 +30,7 @@
     <fragment
         android:id="@+id/action_favorites"
         android:name="org.udg.pds.todoandroid.fragment.FavoritesFragment"
+        android:label="PREFERITS"
         tools:layout="@layout/fragment_favorites" >
     </fragment>
     <fragment
