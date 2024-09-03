@@ -11,6 +11,15 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
+        <Button
+            android:id="@+id/botonback_detalls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tornar"
+            android:background="@color/beigeBackButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <CheckBox
             android:id="@+id/checkbox_detall"
             android:layout_width="wrap_content"
@@ -24,6 +33,7 @@
             android:id="@+id/detall_imatge"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_marginTop="16dp"
             android:contentDescription="Descripcio"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"

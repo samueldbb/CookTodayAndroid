@@ -3,11 +3,14 @@ package org.udg.pds.todoandroid.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -82,6 +85,21 @@ public class DetallsReceptaFragment extends Fragment {
         TextView ingredients = view.findViewById(R.id.detall_ingredients_list);
         ImageView imatge = view.findViewById(R.id.detall_imatge);
         CheckBox checkBox = view.findViewById(R.id.checkbox_detall);
+        Button button = view.findViewById(R.id.botonback_detalls);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                CategoriesFragment categoriesFragment = new CategoriesFragment();
+
+                fragmentTransaction.add(R.id.nav_host_fragment, categoriesFragment);
+                fragmentTransaction.setReorderingAllowed(true);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
 
         carregarDetalls(receptaId, nom, descripcio, passos, imatge, ingredients, checkBox);
 

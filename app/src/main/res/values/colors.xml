@@ -16,7 +16,11 @@
     <color name="beigeClaro">#FFECCE</color>
     <color name="beigeClaroDerechaReceta">#F4E3C8</color>
     <color name="beigeOscuro">#C3B174</color>
-    <color name="beigeMenosOscuro">#80F4E7B9</color>
+    <color name="beigeBackButton">#CBDFA245</color>
+    <color name="beigeMenosOscuro">#5EF4E7B9</color>
+
+    <color name="beigeMenosOscuroAntiguo">#80F4E7B9</color>
+
 
     <color name="marron">#4E472E</color>
 
