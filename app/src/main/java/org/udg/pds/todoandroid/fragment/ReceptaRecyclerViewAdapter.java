@@ -30,10 +30,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class ReceptaRecyclerViewAdapter extends RecyclerView.Adapter<ReceptaRecyclerViewAdapter.ReceptaViewHolder> {
 
     private List<Recepta> mValues= new ArrayList<Recepta>();
@@ -59,7 +55,7 @@ public class ReceptaRecyclerViewAdapter extends RecyclerView.Adapter<ReceptaRecy
         if (!mValues.get(position).imageUrl.isEmpty()) {
             Picasso.get().load(mValues.get(position).imageUrl).into(holder.mImage);
         }
-        holder.mCheckBox.setOnCheckedChangeListener(null); // Clear any previous listeners to avoid issues with recycled views
+        holder.mCheckBox.setOnCheckedChangeListener(null);
         holder.mCheckBox.setChecked(holder.mItem.isChecked());
         holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

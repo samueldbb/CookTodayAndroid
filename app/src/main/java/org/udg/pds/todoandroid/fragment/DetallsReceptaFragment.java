@@ -74,7 +74,6 @@ public class DetallsReceptaFragment extends Fragment {
         } else {
             Log.d("DetallsReceptaFragment", "getArguments() es null");
         }
-
         TextView nom = view.findViewById(R.id.detall_nom);
         TextView descripcio = view.findViewById(R.id.detall_descripcio);
         TextView titolPassos = view.findViewById(R.id.detall_passos);
@@ -86,6 +85,8 @@ public class DetallsReceptaFragment extends Fragment {
         ImageView imatge = view.findViewById(R.id.detall_imatge);
         CheckBox checkBox = view.findViewById(R.id.checkbox_detall);
         Button button = view.findViewById(R.id.botonback_detalls);
+
+        carregarDetalls(receptaId, nom, descripcio, passos, imatge, ingredients, checkBox);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,32 +102,29 @@ public class DetallsReceptaFragment extends Fragment {
             }
         });
 
-        carregarDetalls(receptaId, nom, descripcio, passos, imatge, ingredients, checkBox);
-
         return view;
     }
 
     private void carregarDetalls(Long receptaId, TextView nom, TextView descripcio, TextView passos,
                                  ImageView imatge, TextView ingredients, CheckBox checkBox) {
 
-        Call<Recepta> call = mTodoService.getRecepta(receptaId);
+        Call<Recepta> call = mTodoService.getRecepta(receptaId); // Crida a la API
         call.enqueue(new Callback<Recepta>() {
             @Override
             public void onResponse(Call<Recepta> call, Response<Recepta> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    recepta = response.body();
+                    recepta = response.body(); //Rebem les dades de la recepta
                     nom.setText(recepta.nom);
                     descripcio.setText(recepta.descripcio);
                     ingredients.setText(recepta.llista_ingredients);
                     passos.setText(recepta.passos);
-
                     if (!recepta.imageUrl.isEmpty()) {
                         Picasso.get().load(recepta.imageUrl).into(imatge);
                     }
 
-                    actualitzarCheckbox(checkBox);
-
+                    actualitzarCheckbox(checkBox); //obtenim les dades del cor de preferis
                     checkBox.setChecked(recepta.isChecked());
+                    // Gestionem el fer click a sobre del cor per afegir/treure de preferits
                     checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
                         R_recepta r = new R_recepta();
                         r.id = recepta.id;
@@ -163,7 +161,7 @@ public class DetallsReceptaFragment extends Fragment {
     }
 
     private void actualitzarCheckbox(CheckBox checkBox) {
-        Call<List<Recepta>> callFavorites = mTodoService.getReceptesPreferides();
+        Call<List<Recepta>> callFavorites = mTodoService.getReceptesPreferides(); // Crida a la API
         callFavorites.enqueue(new Callback<List<Recepta>>() {
             @Override
             public void onResponse(Call<List<Recepta>> call, Response<List<Recepta>> response) {

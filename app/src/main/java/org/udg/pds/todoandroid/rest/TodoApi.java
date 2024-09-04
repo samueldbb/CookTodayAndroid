@@ -33,6 +33,9 @@ public interface TodoApi {
     @POST("/users/register")
     Call<String> register(@Body UserRegister register);
 
+    @POST("/users/logout")
+    Call<String> logout();
+
     @GET("/users/check")
     Call<User> check();
 
@@ -42,43 +45,6 @@ public interface TodoApi {
     @PUT("/users/me")
     Call<User> update(@Body User usuariNou);
 
-    @POST("/tasks")
-    Call<IdObject> addTask(@Body Task task);
-
-    @GET("/tasks")
-    Call<List<Task>> getTasks();
-
-    @GET("/tasks/{id}")
-    Call<Task> getTask(@Path("id") String id);
-
-    @POST("/images")
-    @Multipart
-    Call<String> uploadImage(@Part MultipartBody.Part file);
-
-    @POST("/users/me/addRecepta")
-    Call<IdObject> addRecepta(@Body ReceptaString recepta);
-
-    @PUT("/receptes/edit/{id}")
-    Call<IdObject> editRecepta(@Path("id") Long id, @Body ReceptaString recepta);
-
-    @GET("/users/me/receptesAltres")
-    Call<List<Recepta>> listAllReceptes();
-
-    @POST("/users/logout")
-    Call<String> logout();
-
-    @GET("/categories")
-    Call<List<Categoria>> llistarCategories();
-
-    @GET("/categories/{id}/receptes")
-    Call<List<Recepta>> receptesCategoria(@Path("id") Long id);
-
-    @GET("/receptes/conte/{paraula}")
-    Call<List<Recepta>> getReceptesAmbParaula(@Path("paraula") String paraula);
-
-    @GET("/receptes/{id}")
-    Call<Recepta> getRecepta(@Path("id") Long id);
-
     @PUT("/users/me/preferits")
     Call<String> addRemoveReceptaPreferida(@Body R_recepta recepta);
 
@@ -87,5 +53,33 @@ public interface TodoApi {
 
     @GET ("/users/me/receptesPujades")
     Call<List<Recepta>> getMyReceptes();
+
+    @POST("/users/me/addRecepta")
+    Call<IdObject> addRecepta(@Body ReceptaString recepta);
+
+    @GET("/users/me/receptesAltres")
+    Call<List<Recepta>> listAllReceptes();
+
+    @PUT("/receptes/edit/{id}")
+    Call<IdObject> editRecepta(@Path("id") Long id, @Body ReceptaString recepta);
+
+    @GET("/receptes/conte/{paraula}")
+    Call<List<Recepta>> getReceptesAmbParaula(@Path("paraula") String paraula);
+
+    @GET("/receptes/{id}")
+    Call<Recepta> getRecepta(@Path("id") Long id);
+
+    @POST("/images")
+    @Multipart
+    Call<String> uploadImage(@Part MultipartBody.Part file);
+
+    @GET("/categories")
+    Call<List<Categoria>> llistarCategories();
+
+    @GET("/categories/{id}/receptes")
+    Call<List<Recepta>> receptesCategoria(@Path("id") Long id);
+
+
+
 }
 

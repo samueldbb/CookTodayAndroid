@@ -15,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Parte izquierda del CardView -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/left_side_layout"
             android:layout_width="0dp"
@@ -60,6 +59,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="6dp"
                 android:layout_marginBottom="8dp"
+                android:layout_marginEnd="3dp"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="Descripcio"
@@ -70,7 +70,6 @@
                 app:layout_constraintBottom_toBottomOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Parte derecha del CardView para los nuevos TextViews -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/right_side_layout"
             android:layout_width="0dp"
@@ -82,7 +81,6 @@
             app:layout_constraintVertical_bias="0.0"
             app:layout_constraintWidth_percent="0.5">
 
-            <!-- Primer TextView de la parte derecha -->
             <TextView
                 android:id="@+id/textViewRight1"
                 android:layout_width="wrap_content"
@@ -98,18 +96,17 @@
 
             <TextView
                 android:id="@+id/ingredientsMy"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
-                android:text="ingredients \ningredients \ningredients"
-                android:maxLines="4"
+                android:layout_marginStart="8dp"
                 android:ellipsize="end"
+                android:maxLines="3"
+                android:text="ingredients \ningredients \ningredients"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewRight1" />
 
-            <!-- Segundo TextView de la parte derecha -->
             <TextView
                 android:id="@+id/textViewRight2"
                 android:layout_width="wrap_content"
@@ -125,12 +122,12 @@
 
             <TextView
                 android:id="@+id/passosMy"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
                 android:text="passos \npassos \npassos"
-                android:maxLines="4"
+                android:maxLines="5"
                 android:ellipsize="end"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"

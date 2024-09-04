@@ -14,15 +14,15 @@
 
         <ImageView
             android:id="@+id/imatge_perfil_amb_id"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
             android:contentDescription="foto_perfil"
-            android:src="@drawable/ic_profile_chef"
+            android:src="@drawable/firulais_profile_round"
             app:layout_constraintBottom_toTopOf="@+id/nomPerfil"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.34"
+            app:layout_constraintHorizontal_bias="0.12"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,12 +46,11 @@
             android:id="@+id/correuPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:text="usuari@correu.com"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.33"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/nomPerfil" />
 
@@ -59,13 +58,13 @@
             android:id="@+id/nomPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="32dp"
+
+            android:layout_marginTop="8dp"
             android:text="Nom de l'Usuari"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.323"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imatge_perfil_amb_id" />
 

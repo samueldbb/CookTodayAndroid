@@ -1,114 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/beigeClaro">
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/identificat"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:padding="16dp">
 
         <Button
             android:id="@+id/BotoTornar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:backgroundTint="@color/boton_rojo2"
             android:text="Tornar"
+            android:background="@color/beigeBackButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/linearLayoutEditarUsuari"
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/logo_cook_today"
+            android:contentDescription="logo_descripcio"
+            app:layout_constraintBottom_toTopOf="@+id/name_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3"
+            android:scaleType="centerInside"
+            app:tint="@color/beigeOscuro"
+            android:rotation="45" />
+
+        <TextView
+            android:id="@+id/name_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:keepScreenOn="true"
+            android:text="CookToday"
+            android:textColor="@color/beigeOscuro"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_edit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginBottom="100dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/BotoTornar"
-            app:layout_constraintVertical_bias="0.174">
+            app:layout_constraintTop_toBottomOf="@+id/name_logo"
+            app:cardBackgroundColor="@color/beigeMenosOscuro">
 
-            <EditText
-                android:id="@+id/TextEmail"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/linearLayoutEditarUsuari"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="11dp"
-                android:ems="10"
-                android:hint="Email"
-                android:inputType="textPersonName"
-                app:layout_constraintBottom_toTopOf="@+id/TextDescripcio"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TextContrasenya" />
+                android:orientation="vertical"
+                android:padding="8dp">
 
-            <EditText
-                android:id="@+id/TextNom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="11dp"
-                android:ems="10"
-                android:hint="Nom Usuari"
-                android:inputType="textPersonName"
-                app:layout_constraintBottom_toTopOf="@+id/TextContrasenya"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/BotoTornar" />
+                <EditText
+                    android:id="@+id/TextNom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="11dp"
+                    android:hint="Nom Usuari"
+                    android:inputType="textPersonName"
+                    android:padding="12dp" />
 
+                <EditText
+                    android:id="@+id/TextContrasenya"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="11dp"
+                    android:hint="Contrasenya"
+                    android:inputType="textPassword"
+                    android:padding="12dp" />
 
-            <EditText
-                android:id="@+id/TextContrasenya"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="11dp"
-                android:ems="10"
-                android:hint="Contrasenya"
-                android:inputType="textVisiblePassword"
-                app:layout_constraintBottom_toTopOf="@+id/TextEmail"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TextNom" />
+                <EditText
+                    android:id="@+id/TextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="11dp"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:padding="12dp" />
 
-            <EditText
-                android:id="@+id/TextDescripcio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="32dp"
-                android:ems="13"
-                android:gravity="top|start"
-                android:hint="Descripció"
-                android:inputType="textMultiLine"
-                android:minLines="4"
-                app:layout_constraintBottom_toTopOf="@+id/button_register"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TextEmail" />
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/TextDescripcio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Descripció"
+                    android:inputType="textMultiLine"
+                    android:minLines="4"
+                    android:gravity="top|start"
+                    android:padding="12dp"
+                    android:layout_marginBottom="11dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <Button
             android:id="@+id/button_register"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="#DFA245"
-            android:text="Registrar"
+            android:layout_marginTop="32dp"
+            android:background="@color/boton_rojo"
+            android:text="Registrar-se"
+            android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutEditarUsuari" />
+            app:layout_constraintTop_toBottomOf="@+id/card_edit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

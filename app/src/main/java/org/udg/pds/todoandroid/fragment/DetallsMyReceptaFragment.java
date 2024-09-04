@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -87,7 +88,7 @@ public class DetallsMyReceptaFragment extends Fragment implements OnReceptaUpdat
         TextView passos = view.findViewById(R.id.detall_passos_list_my);
         TextView ingredients = view.findViewById(R.id.detall_ingredients_list_my);
         ImageView imatge = view.findViewById(R.id.detall_imatge_my);
-        Button button = view.findViewById(R.id.button_detall);
+        ImageButton button = view.findViewById(R.id.button_detall);
 
         carregarDetalls(receptaId, nom, descripcio, passos, imatge, ingredients, button);
 
@@ -109,7 +110,7 @@ public class DetallsMyReceptaFragment extends Fragment implements OnReceptaUpdat
     }
 
     private void carregarDetalls(Long receptaId, TextView nom, TextView descripcio, TextView passos,
-                                 ImageView imatge, TextView ingredients, Button button) {
+                                 ImageView imatge, TextView ingredients, ImageButton button) {
 
         Call<Recepta> call = mTodoService.getRecepta(receptaId);
         call.enqueue(new Callback<Recepta>() {
